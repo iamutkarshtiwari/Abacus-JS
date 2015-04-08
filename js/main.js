@@ -20,19 +20,12 @@ soroban= Class.create(Sprite, {
         this.tx = this.x;
         this.ty = this.y;
 
-    },
+    }
     
+});
+   
+        
     
-    onenterframe: function() {
-        
-       /* this.x+=4;
-        this.y+=4;  */
-        
-        // This one is for keyboard input
-        
-        //  This one is for mouse input
-        
-    }});
     
         
          
@@ -63,10 +56,7 @@ window.onload = function() {
         
                
       
-        game.rootScene.addEventListener('touchend', function(e){
-    player.tx = e.x;
-    player.ty = e.y;
-});
+        
         
         //Game Condition Check
         game.rootScene.addEventListener('enterframe', function() {

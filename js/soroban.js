@@ -7,8 +7,8 @@ var stgHeight =768;
 // Soroban Abacus class
 
 
-
 /*
+
 sorobanup= Class.create(Sprite, { 
     initialize: function()
     {
@@ -26,17 +26,18 @@ sorobanup= Class.create(Sprite, {
     },
     
     
-    onenterframe: function() {
+    
         
-       /* this.x+=4;
-        this.y+=4;  */
+        
         
         // This one is for keyboard input
         
         //  This one is for mouse input
         
- /*   }});
-*/
+   }});
+
+    */
+    
     
  
 // WhiteBeads
@@ -49,15 +50,24 @@ whitebead= Class.create(Sprite, {
         
         this.x=x
         this.y=y
-        this.frame=1
+        
     },
     
-    onenterframe: function()
-    {
+     onenterframe: function() {
         
-    }
-}
-            );
+        this.animationDuration = 0;
+        this.addEventListener(Event.TOUCH_END, this.updateAnimation);
+        
+},
+
+        updateAnimation: function()
+        {
+            this.y+=4;
+        }
+            
+            
+            
+     });
  
  
  
