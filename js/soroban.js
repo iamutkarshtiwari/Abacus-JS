@@ -7,38 +7,48 @@ var stgHeight =768;
 // Soroban Abacus class
 
 
-/*
 
-sorobanup= Class.create(Sprite, { 
-    initialize: function()
+var x_coordinates=[184,258,332,406,478,553,627,701,774,848,922,996,1068,1142,1215];
+
+var y_coordinates=[205,516,549,582,615];
+
+
+
+// buttons setup
+var sorobanup= function()
+{
+    
+    uparray=[];
+    
+    
+    for(var i=0;i<5;i++)
     {
-        
-        Sprite.call(this,955,449);
-        this.image=game.assets['res/soroban.png']
-        
-        this.x=240;
-        this.y=150;
-        this.frame=0;
-        
-        this.tx = this.x;
-        this.ty = this.y;
+        temp=[];
+        for(var j=0;j<15;j++)
+        {
+            temp.push(new whitebead(x_coordinates[j],y_coordinates[i]));
+        }
+        uparray.push(temp);
+    }
+}
 
-    },
-    
-    
-    
-        
-        
-        
-        // This one is for keyboard input
-        
-        //  This one is for mouse input
-        
-   }});
 
-    */
     
     
+//buttons display    
+
+var sorobanbuttonsdisplay=function()
+{
+    for(var i=0;i<5;i++)
+    {   
+        for( var j=0; j<15;j++)
+        {
+       game.rootScene.addChild(uparray[i][j]);
+    }
+    }
+}
+                                  
+                                  
  
 // WhiteBeads
 
