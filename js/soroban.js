@@ -60,6 +60,7 @@ whitebead= Class.create(Sprite, {
         
         this.x=x
         this.y=y
+        this.up=0;
         
     },
     
@@ -72,7 +73,30 @@ whitebead= Class.create(Sprite, {
 
         updateAnimation: function()
         {
-            this.y+=4;
+            
+            if(this.y<345)
+                if(this.up==0)
+                {
+                    this.y+=100;
+                    this.up=1;
+                }
+                else
+                {
+                    this.y-=100;
+                    this.up=0;
+                }
+            else
+                if(this.up==0)
+                {
+                    this.y-=136;
+                    this.up=1;
+                }
+                else
+                {
+                    this.y+=136;
+                    this.up=0;
+                }
+            
         }
             
             
