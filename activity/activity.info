@@ -1,0 +1,6 @@
+[Activity]
+name = 2048
+activity_version = 1
+bundle_id = me.samdroid.sugar.2048
+exec = sugar-activity-web
+icon = activity-icon
