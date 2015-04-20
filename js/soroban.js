@@ -19,8 +19,14 @@ soroban= Class.create(Sprite, {
         
         this.tx = this.x;
         this.ty = this.y;
-
-    }
+        
+        
+        },
+        
+        onenterframe: function()
+        {
+            
+        }
     
 });
 
@@ -114,7 +120,10 @@ whitebead= Class.create(Sprite, {
                 }
         
             this.change=0;
+            sorobanCalculation()
         }
+        
+        
         
 },
 
@@ -125,9 +134,10 @@ whitebead= Class.create(Sprite, {
             {
         for(var j=0;j<15;j++)
         {
-            
-        if(this.up==0)        
-        if(uparray[i][j].x==this.x && uparray[i][j].y>345 && uparray[i][j].y<this.y )
+        
+        // For down beads    
+        if(this.up==false)        
+        if(uparray[i][j].x==this.x && uparray[i][j].y>345 && uparray[i][j].y<=this.y )
         {
             
             if(uparray[i][j].up==this.up)
@@ -136,8 +146,9 @@ whitebead= Class.create(Sprite, {
             
         }
         
-        if(this.up==1)
-        if(uparray[i][j].x==this.x && uparray[i][j].y>this.y && uparray[i][j].y<620)
+        //For upper beads
+        if(this.up==true)
+        if(uparray[i][j].x==this.x && uparray[i][j].y>=this.y && uparray[i][j].y<620)
         {
          
            if(uparray[i][j].up==this.up)
@@ -152,28 +163,8 @@ whitebead= Class.create(Sprite, {
         
         
      
-            if(this.y<345)
-                if(this.up==0)
-                {
-                    this.y+=100;
-                    this.up=true;
-                }
-                else
-                {
-                    this.y-=100;
-                    this.up=false;
-                }
-            else
-                if(this.up==false)
-                {
-                    this.y-=136;
-                    this.up=true;
-                }
-                else
-                {
-                    this.y+=136;
-                    this.up=false;
-                }
+     
+     
      
      
      
@@ -214,6 +205,42 @@ blackbead= Class.create(Sprite, {
     }
 }
             );
+
+
+// Soroban Calculation
+
+   
+var sorobanCalculation= function()
+{
+    count=0
+    //console.log("help")
+        for(var i=0;i<5;i++)
+        {
+            //console.log("yup")
+            for(var j=0;j<15;j++)
+            {
+                //console.log("yo")
+                if(uparray[i][j].x==701 && uparray[i][j].y>345 && uparray[i][j].up==true)
+                {
+                    count+=1
+                    //console.log(count)
+                }
+            }
+        }
+        //console.log("yes")
+       
+    count=count.toString()
+    console.log(count)
+   
+        sorobanlabel.text=count;
+        sorobanlabel.x=80
+        sorobanlabel.y=20
+        sorobanlabel.color="black"
+        sorobanlabel.font = "30px cursive";
+        
+}
+        
+
 
 
        

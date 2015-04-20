@@ -5,6 +5,7 @@ var stgHeight =768;
 
 
 
+
 // Slider class
 
 var Slider= Class.create(Sprite, {
@@ -21,12 +22,16 @@ var Slider= Class.create(Sprite, {
     
     onenterframe: function() {
         
-       this.addEventListener('touchend', function(e){
-    this.x = e.x;
-    this.y = e.y;
-});
+       this.addEventListener('touchmove', this.move);
     
-    } 
+    } ,
+    
+    move: function(e)
+    {
+    this.tx = e.x-23;
+    this.ty = e.y-17;
+    
+    }
     
 });
 
@@ -44,25 +49,27 @@ window.onload = function() {
     
     
    game.fps = 30;
-    game.scale = 2;
-    
+    game.scale = 1;
+   
     
 
     game.onload = function() { //Prepares the game
      
         
-        var label= new Label("Hello");
+        
         var slider=new Slider(200,170);
+      
 
-
-label.color='#f00';
-label.font = "8px cursive";
-//label.text="Hello";
 
         soroban = new soroban();
         soroban.scale(1.3,1.3);
         //w1= new whitebead(1215,205);
         //w2= new whitebead(1145,205);
+      
+        
+         sorobanlabel=new Label()
+        
+        
         
         
        
@@ -75,6 +82,12 @@ label.font = "8px cursive";
         //game.rootScene.addChild(label);
         game.rootScene.addChild(slider);
         
+        // Score calculation
+        
+        
+        
+        
+        game.rootScene.addChild(sorobanlabel)
         
         
         
