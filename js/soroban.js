@@ -38,6 +38,8 @@ var y_coordinates=[205,516,549,582,615];
 
 
 
+
+
 // buttons setup
 var sorobanup= function()
 {
@@ -207,36 +209,68 @@ blackbead= Class.create(Sprite, {
             );
 
 
-// Soroban Calculation
 
+var uppervalue=[10000000,1000000,100000,10000,1000,100,10,1,0.1,0.01,0.001,0.0001,0.00001,0.000001,0.0000001]
+
+
+var countlabel=""
+// Soroban Calculation
+var exp=["05","06","07"]
    
 var sorobanCalculation= function()
-{
-    count=0
-    //console.log("help")
-        for(var i=0;i<5;i++)
+{       
+        countlabel=""
+    
+        for(var j=0;j<15;j++)
         {
-            //console.log("yup")
-            for(var j=0;j<15;j++)
-            {
-                //console.log("yo")
-                if(uparray[i][j].x==701 && uparray[i][j].y>345 && uparray[i][j].up==true)
-                {
-                    count+=1
-                    //console.log(count)
-                }
+            count=0
+            counter=0
+        for(var i=0;i<5;i++)
+        {   
+         if(uparray[i][j].y>345 && uparray[i][j].up==true)
+            {  count+=uppervalue[j]
+                  counter++
             }
+                    
         }
-        //console.log("yes")
+        
+        if(count>0)
+        {
+            
+         if(j==12 || j==13 || j==14)
+            count=counter.toString()+'e'+'-'+exp[j-12]
+         else
+         {
+            count=count.toString()
+            //console.log(count)
+         }
+        
+        if(countlabel=="")
+        {
+        countlabel=countlabel+count
+        }
+        else
+        {
+        countlabel+="+"+count
+        }
+        
+        
+        }
+        
+        //console.log(count)
+        
+        }
+            
+        
+      
        
-    count=count.toString()
-    console.log(count)
+        
    
-        sorobanlabel.text=count;
-        sorobanlabel.x=80
-        sorobanlabel.y=20
+        sorobanlabel.text=countlabel;
+        sorobanlabel.x=690
+        sorobanlabel.y=90
         sorobanlabel.color="black"
-        sorobanlabel.font = "30px cursive";
+        sorobanlabel.font = "35px cursive";
         
 }
         

@@ -59,15 +59,14 @@ window.onload = function() {
         
         var slider=new Slider(200,170);
       
-
+        
 
         soroban = new soroban();
         soroban.scale(1.3,1.3);
-        //w1= new whitebead(1215,205);
-        //w2= new whitebead(1145,205);
+       
       
         
-         sorobanlabel=new Label()
+         sorobanlabel=new Label("")
         
         
         
@@ -77,9 +76,7 @@ window.onload = function() {
         sorobanup();
         sorobanbuttonsdisplay(game.rootScene);
         
-        //game.rootScene.addChild(w1);
-        //game.rootScene.addChild(w2);
-        //game.rootScene.addChild(label);
+     
         game.rootScene.addChild(slider);
         
         // Score calculation
