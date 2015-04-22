@@ -137,31 +137,59 @@ whitebead= Class.create(Sprite, {
         for(var j=0;j<15;j++)
         {
         
-        // For down beads    
-        if(this.up==false)        
-        if(uparray[i][j].x==this.x && uparray[i][j].y>345 && uparray[i][j].y<=this.y )
+        // For lower-down beads    
+        if(this.up==false) 
+        {
+        if(uparray[i][j].x==this.x && uparray[i][j].y>345 && uparray[i][j].y<this.y )
         {
             
             if(uparray[i][j].up==this.up)
+            {
+                
                 uparray[i][j].change=1
-            
+            }
             
         }
         
-        //For upper beads
+        if(uparray[i][j].x==this.x && uparray[i][j].y==this.y)
+           uparray[i][j].change=1
+        
+        
+        }
+        
+        
+        
+        //For lower-up beads
         if(this.up==true)
-        if(uparray[i][j].x==this.x && uparray[i][j].y>=this.y && uparray[i][j].y<620)
+        {
+        if(uparray[i][j].x==this.x && uparray[i][j].y>this.y && uparray[i][j].y<620)
         {
          
            if(uparray[i][j].up==this.up)
-                uparray[i][j].change=1
+           {
+               //this.change=1
+               uparray[i][j].change=1
+           }
                 
         }
-                
+        
+        if(uparray[i][j].x==this.x && uparray[i][j].y==this.y)
+           uparray[i][j].change=1
+        
+            
+        }
+        
+        
+        
+        
+        
+        
         }
         }
+        
+        
                 
-                
+              
         
         
      
@@ -214,12 +242,20 @@ var uppervalue=[10000000,1000000,100000,10000,1000,100,10,1,0.1,0.01,0.001,0.000
 
 
 var countlabel=""
+var labelspace=0
+var t=20
+var count=0
+
+
 // Soroban Calculation
 var exp=["05","06","07"]
+var tofix=[1,2,3,4]
    
 var sorobanCalculation= function()
 {       
         countlabel=""
+        labelspace=0
+        t=20
     
         for(var j=0;j<15;j++)
         {
@@ -227,18 +263,35 @@ var sorobanCalculation= function()
             counter=0
         for(var i=0;i<5;i++)
         {   
-         if(uparray[i][j].y>345 && uparray[i][j].up==true)
-            {  count+=uppervalue[j]
+         
+            if(uparray[i][j].up==true)
+            {  
+                if(uparray[i][j].y<345)
+                    count+=uppervalue[j]*5
+                else
+                count+=uppervalue[j]
+                
+                if(j>7 && j<12)
+                count = Number(count.toFixed(tofix[j-8]));
+                console.log(count)
+                    
+                    
+                
+                
+                 
                   counter++
             }
                     
         }
+        
+       // console.log(count)
         
         if(count>0)
         {
             
          if(j==12 || j==13 || j==14)
             count=counter.toString()+'e'+'-'+exp[j-12]
+            
          else
          {
             count=count.toString()
@@ -248,10 +301,14 @@ var sorobanCalculation= function()
         if(countlabel=="")
         {
         countlabel=countlabel+count
+        
         }
         else
         {
         countlabel+="+"+count
+        labelspace++
+        t+=8
+        
         }
         
         
@@ -267,14 +324,32 @@ var sorobanCalculation= function()
         
    
         sorobanlabel.text=countlabel;
-        sorobanlabel.x=690
-        sorobanlabel.y=90
+        sorobanlabel.x=690-(labelspace*t)
+        //if(t>14)
+        
+        //sorobanlabel.x=690
+        sorobanlabel.y=90// Score calculation
+        
+        
+        
+        //sorobanlabel.textAlign="center"
         sorobanlabel.color="black"
         sorobanlabel.font = "35px cursive";
-        
+        game.rootScene.addChild(sorobanlabel)
 }
         
 
+
+var sorobanDisplay = function()
+{
+    game.rootScene.addChild(soroban);
+        sorobanup();
+        sorobanbuttonsdisplay(game.rootScene);
+        game.rootScene.addChild(slider);
+        game.rootScene.addChild(sorobanlabel)
+}
+    
+        
 
 
        

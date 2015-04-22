@@ -57,8 +57,10 @@ window.onload = function() {
      
         
         
-        var slider=new Slider(200,170);
-      
+        slider=new Slider(200,170);
+         
+        //sorobanswitch=new sorobanswitch();
+        
         
 
         soroban = new soroban();
@@ -72,19 +74,18 @@ window.onload = function() {
         
         
        
-        game.rootScene.addChild(soroban);
-        sorobanup();
-        sorobanbuttonsdisplay(game.rootScene);
+        
+        // function to call soroban abacus
+        sorobanDisplay(game.rootScene);
+        
         
      
-        game.rootScene.addChild(slider);
-        
-        // Score calculation
         
         
         
         
-        game.rootScene.addChild(sorobanlabel)
+        
+        //game.rootScene.addChild(sorobanswitch)
         
         
         
