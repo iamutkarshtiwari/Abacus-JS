@@ -45,7 +45,7 @@ var Slider= Class.create(Sprite, {
 window.onload = function() {
     game = new Game(stgWidth, stgHeight);
     
-    game.preload('res/soroban.png','res/BlackBead.png','res/WhiteBead.png','res/Slider.png');
+    game.preload('res/soroban.png','icon/soroban.png','res/BlackBead.png','res/WhiteBead.png','res/Slider.png');
     
     
    game.fps = 30;
@@ -59,7 +59,7 @@ window.onload = function() {
         
         slider=new Slider(200,170);
          
-        //sorobanswitch=new sorobanswitch();
+        sorobanswitch=new sorobanswitch();
         
         
 
@@ -75,29 +75,22 @@ window.onload = function() {
         
        
         
-        // function to call soroban abacus
+        
+        
+        game.rootScene.addChild(sorobanswitch)
+        
+      game.rootScene.addEventListener('enterframe', function() {
+           
+          if(abacusswitch==1)
+          {
+              
+              
+              // function to call soroban abacus
         sorobanDisplay(game.rootScene);
         
-        
-     
-        
-        
-        
-        
-        
-        //game.rootScene.addChild(sorobanswitch)
-        
-        
-        
-               
-      
-        
-        
-        //Game Condition Check
-        game.rootScene.addEventListener('enterframe', function() {
-            //08 Game Over
-            
-            //08 Make Bomb Generator
+        abacusswitch=0
+          }
+          
         });
 
     }

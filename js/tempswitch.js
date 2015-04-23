@@ -11,12 +11,12 @@ sorobanswitch= Class.create(Sprite, {
     {
         
         Sprite.call(this,45,45);
-        this.image=game.assets['icons/soroban.svg']
+        this.image=game.assets['icon/soroban.png']
         
         this.x=40;
-        this.y=200;
+        this.y=40;
         this.frame=0;
-        
+        this.scale(1.2,1.2)
         this.tx = this.x;
         this.ty = this.y;
         
@@ -41,7 +41,9 @@ sorobanswitch= Class.create(Sprite, {
 });
 
 
+var abacusswitch=0
 
+/*
 
 // buttons setup
 var sorobanup= function()
@@ -156,7 +158,7 @@ whitebead= Class.create(Sprite, {
      });
  
  
- 
+ */
  
  
  
