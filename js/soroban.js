@@ -19,6 +19,12 @@ soroban= Class.create(Sprite, {
         
         this.tx = this.x;
         this.ty = this.y;
+        this.x_coordinates=[184,258,332,406,478,553,627,701,774,848,922,996,1068,1142,1215];
+
+        this.y_coordinates=[205,516,549,582,615];
+        
+        this.uparray=[];
+        
         
         
         },
@@ -32,9 +38,7 @@ soroban= Class.create(Sprite, {
 
 
 // buttons coordinate set
-var x_coordinates=[184,258,332,406,478,553,627,701,774,848,922,996,1068,1142,1215];
 
-var y_coordinates=[205,516,549,582,615];
 
 
 
@@ -44,7 +48,7 @@ var y_coordinates=[205,516,549,582,615];
 var sorobanup= function()
 {
     
-    uparray=[];
+    
     
     
     for(var i=0;i<5;i++)
@@ -52,9 +56,9 @@ var sorobanup= function()
         temp=[];
         for(var j=0;j<15;j++)
         {
-            temp.push(new whitebead(x_coordinates[j],y_coordinates[i]));
+            temp.push(new whitebead(soroban.x_coordinates[j],soroban.y_coordinates[i]));
         }
-        uparray.push(temp);
+        soroban.uparray.push(temp);
     }
 }
 
@@ -69,7 +73,7 @@ var sorobanbuttonsdisplay=function()
     {   
         for( var j=0; j<15;j++)
         {
-       game.rootScene.addChild(uparray[i][j]);
+       game.rootScene.addChild(soroban.uparray[i][j]);
     }
     }
 }
@@ -132,72 +136,56 @@ whitebead= Class.create(Sprite, {
         updateAnimation: function()
         {
             
-            for(var i=0;i<5;i++)
-            {
+        for(var i=0;i<5;i++)
+        {
         for(var j=0;j<15;j++)
         {
         
-        // For lower-down beads    
+        // For lower-down beads  
+            
+        if(this.y>345 )
+        {
+            
         if(this.up==false) 
         {
-        if(uparray[i][j].x==this.x && uparray[i][j].y>345 && uparray[i][j].y<this.y )
+        if(soroban.uparray[i][j].x==this.x && soroban.uparray[i][j].y<=this.y && soroban.uparray[i][j].y>345 )
         {
             
-            if(uparray[i][j].up==this.up)
-            {
-                
-                uparray[i][j].change=1
-            }
-            
+            if(soroban.uparray[i][j].up==this.up)
+            soroban.uparray[i][j].change=1
         }
-        
-        if(uparray[i][j].x==this.x && uparray[i][j].y==this.y)
-           uparray[i][j].change=1
-        
-        
         }
         
         
         
         //For lower-up beads
-        if(this.up==true)
+        else
         {
-        if(uparray[i][j].x==this.x && uparray[i][j].y>this.y && uparray[i][j].y<620)
+        if(soroban.uparray[i][j].x==this.x && soroban.uparray[i][j].y>=this.y && soroban.uparray[i][j].y<620)
         {
          
-           if(uparray[i][j].up==this.up)
+           if(soroban.uparray[i][j].up==this.up)
            {
                //this.change=1
-               uparray[i][j].change=1
+               soroban.uparray[i][j].change=1
            }
                 
         }
         
-        if(uparray[i][j].x==this.x && uparray[i][j].y==this.y)
-           uparray[i][j].change=1
+       
+        }
+        }
         
-            
+        else
+        {
+            if(soroban.uparray[i][j].x==this.x && soroban.uparray[i][j].y==this.y && soroban.uparray[i][j].y<345 )
+           soroban.uparray[i][j].change=1
         }
         
         
         
-        
-        
-        
         }
         }
-        
-        
-                
-              
-        
-        
-     
-     
-     
-     
-     
-     
         
      }
             
@@ -246,6 +234,8 @@ var labelspace=0
 var t=20
 var count=0
 
+var sorobantotalcount=0
+
 
 // Soroban Calculation
 var exp=["05","06","07"]
@@ -255,6 +245,7 @@ var sorobanCalculation= function()
 {       
         countlabel=""
         labelspace=0
+        sorobantotalcount=0
         t=20
     
         for(var j=0;j<15;j++)
@@ -264,9 +255,9 @@ var sorobanCalculation= function()
         for(var i=0;i<5;i++)
         {   
          
-            if(uparray[i][j].up==true)
+            if(soroban.uparray[i][j].up==true)
             {  
-                if(uparray[i][j].y<345)
+                if(soroban.uparray[i][j].y<345)
                     count+=uppervalue[j]*5
                 else
                 count+=uppervalue[j]
@@ -283,6 +274,8 @@ var sorobanCalculation= function()
             }
                     
         }
+        
+        sorobantotalcount+=count
         
        // console.log(count)
         
@@ -322,8 +315,14 @@ var sorobanCalculation= function()
       
        
         
-   
+            
+            
+        if(sorobantotalcount!=0)    
+        sorobanlabel.text=countlabel+"="+sorobantotalcount.toString();
+        else
         sorobanlabel.text=countlabel;
+            
+        
         sorobanlabel.x=690-(labelspace*t)
         //if(t>14)
         
